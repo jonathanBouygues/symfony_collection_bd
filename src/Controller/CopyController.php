@@ -35,12 +35,12 @@ class CopyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($copy);
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($copy);
-            // $entityManager->flush();
+            // dump($copy);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($copy);
+            $entityManager->flush();
 
-            // return $this->redirectToRoute('copy_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('copy_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('copy/new.html.twig', [

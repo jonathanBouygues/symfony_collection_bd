@@ -33,10 +33,14 @@ class Copy
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=BandeDessinee::class, inversedBy="copies")
+     */
+    private $bandeDessinee;
+
     public function __construct()
     {
-        // $this->user = 2;
-        dump($this->security->getUser());
+        // dump($this->security->getUser());
     }
 
     public function getId(): ?int
@@ -76,6 +80,18 @@ class Copy
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getBandeDessinee(): ?BandeDessinee
+    {
+        return $this->bandeDessinee;
+    }
+
+    public function setBandeDessinee(?BandeDessinee $bandeDessinee): self
+    {
+        $this->bandeDessinee = $bandeDessinee;
 
         return $this;
     }

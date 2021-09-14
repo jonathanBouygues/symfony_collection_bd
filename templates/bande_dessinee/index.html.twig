@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BandeDessinee index{% endblock %}
+
+{% block body %}
+    <h1>BandeDessinee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bande_dessinee in bande_dessinees %}
+            <tr>
+                <td>{{ bande_dessinee.id }}</td>
+                <td>{{ bande_dessinee.name }}</td>
+                <td>{{ bande_dessinee.createdDate ? bande_dessinee.createdDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('bande_dessinee_show', {'id': bande_dessinee.id}) }}">show</a>
+                    <a href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bande_dessinee_new') }}">Create new</a>
+{% endblock %}
