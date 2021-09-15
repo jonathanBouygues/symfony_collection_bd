@@ -14,7 +14,7 @@ class CopyType extends AbstractType
         $builder
             ->add('purchase_date')
             ->add('price')
-            ->add('user')
+            // ->add('user')
             ->add('bandeDessinee');
     }
 

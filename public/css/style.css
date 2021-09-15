@@ -1,0 +1,84 @@
+body {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header, footer {
+    background-color: hsl(240, 43%, 50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    color: aliceblue;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+header img {
+    border-radius: 20px;
+}
+
+header nav {
+    width: 25%;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+header nav ul li {
+    margin: 5px;
+    background-color: aliceblue;
+    padding: 5px;
+    list-style: none;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 100px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+}
+
+main p {
+    background-color: hsl(240, 43%, 50%);
+    color: aliceblue;
+    padding: 30px;
+    border-radius: 10px;
+
+}
+
+main form div#id {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main form div.form-group {
+    margin: 6 px 0;
+}
+
+main table.table {
+    width: 90%;
+}
+
+main table.table th, main table.table td  {
+    width: 10%;
+    text-align: center;
+}

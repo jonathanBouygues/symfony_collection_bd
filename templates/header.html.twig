@@ -1,0 +1,22 @@
+<header>
+    <a href="/">
+        <img src="{{ asset('/img/logo.jpg') }}" alt="bd" width="50" height="50">
+    </a>
+    
+    <h1>Le monde des BD</h1>
+    
+    <nav>
+        <ul>
+            {% if app.user.email is not defined %}
+                <li><a href="/login/">Connexion</a></li>
+                <li><a href="/register/">S'enregistrer</a></li>
+            {% else %}
+            <li><a href="/user/">Profil</a></li>
+            <li><a href="/user/copy">Ma collection</a></li>
+            <li><a href="/author/">Auteur</a></li>
+            <li><a href="/editor/">Editeur</a></li>
+            <li><a href="/logout/">Déconnexion</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

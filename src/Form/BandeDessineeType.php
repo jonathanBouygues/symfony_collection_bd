@@ -13,7 +13,7 @@ class BandeDessineeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('created_date')
+            // ->add('created_date')
             ->add('editor');
     }
 

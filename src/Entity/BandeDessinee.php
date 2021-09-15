@@ -6,6 +6,8 @@ use App\Repository\BandeDessineeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity(repositoryClass=BandeDessineeRepository::class)
@@ -25,6 +27,7 @@ class BandeDessinee
     private $name;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="date")
      */
     private $created_date;

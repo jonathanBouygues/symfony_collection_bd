@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CopyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CopyRepository::class)
@@ -37,6 +38,7 @@ class Copy
      * @ORM\ManyToOne(targetEntity=BandeDessinee::class, inversedBy="copies")
      */
     private $bandeDessinee;
+
 
     public function __construct()
     {
@@ -94,5 +96,10 @@ class Copy
         $this->bandeDessinee = $bandeDessinee;
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
     }
 }

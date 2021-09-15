@@ -2,18 +2,38 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+        <title>{% block title %}Le monde des BD{% endblock %}</title>
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+             <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+             <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
+             <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
+        <link rel="icon" type="image/png" href="{{ asset('./img/logo.jpg') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {{ include('header.html.twig') }}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <main>
+            {% block body %}
+                <p class"aos-item" data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000">
+                    Bienvenue sur notre application de collection de BDs
+                </p>           
+                <img class"aos-item" data-aos="flip-down" data-aos-delay="1000" data-aos-duration="1000" src="{{ asset('/img/asterix.jpg') }}" alt="asterix"> 
+            {% endblock %}
+        </main>
+
+        {{ include('footer.html.twig') }}
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="{{ asset('/js/index.js') }}"></script>
     </body>
 </html>
