@@ -1,4 +1,8 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_errors(form) }}
+
+    {{ form_row(form.purchase_date, { 'label': 'Date d\'achat' }) }}
+    {{ form_row(form.price, { 'label': 'Prix' }) }}
+    {{ form_row(form.bandeDessinee, { 'label': 'Bande Dessinée' }) }}
+
 {{ form_end(form) }}

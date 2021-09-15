@@ -37,4 +37,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/author/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/editor/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/user/, roles: IS_AUTHENTICATED_FULLY }

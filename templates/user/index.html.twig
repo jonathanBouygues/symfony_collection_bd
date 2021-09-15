@@ -9,12 +9,25 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Developpement/ORT/développement/architectureApplication/Symfony/leMondeDesBds/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Developpement/ORT/développement/architectureApplication/Symfony/leMondeDesBds/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
+    <h1>Mon profil </h1>
+    <table class="table aos-item" data-aos="flip-up" data-aos-delay="500" data-aos-duration="1500">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ app.user.id }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.firstname }}</td>
+                <td>{{ app.user.lastname}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}
+

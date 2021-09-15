@@ -30,15 +30,20 @@ class UserController extends AbstractController
      */
     public function indexCopy(CopyRepository $copyRepository): Response
     {
+        // Get the userID
+        $userId = $this->getUser()->getId();
+
         return $this->render('user/copy/index.html.twig', [
-            'copies' => $copyRepository->findAll(),
+            'copies' => $copyRepository->findBy(
+                ['user' => $userId]
+            ),
         ]);
     }
 
     /**
-     * @Route("/addCopy", name="copy_add", methods={"GET","POST"})
+     * @Route("/addCopy", name="copy_new", methods={"GET","POST"})
      */
-    public function addCopy(Request $request): Response
+    public function newCopy(Request $request): Response
     {
 
         $copy = new Copy();
@@ -54,6 +59,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('copy_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('user/copy/new.html.twig', [
+            'controllerName' => 'Nouvelle Entrée',
             'copy' => $copy,
             'form' => $form,
         ]);

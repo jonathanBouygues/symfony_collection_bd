@@ -8,18 +8,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Name</th>
                 <th>Purchase_date</th>
                 <th>Price</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for copy in copies %}
             <tr>
-                <td>{{ copy.id }}</td>
-                <td>{{ copy.purchaseDate ? copy.purchaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ copy.price }}</td>
+                <td>{{ copy.bandeDessinee }}</td>
+                <td>{{ copy.purchaseDate ? copy.purchaseDate|date('d-m-Y') : '' }}</td>
+                <td>{{ copy.price | format_currency('EUR', locale='fr') }}</td>
                 <td>
                     <a href="{{ path('copy_show', {'id': copy.id}) }}">show</a>
                     <a href="{{ path('copy_edit', {'id': copy.id}) }}">edit</a>
