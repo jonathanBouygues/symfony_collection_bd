@@ -82,3 +82,8 @@ main table.table th, main table.table td  {
     width: 10%;
     text-align: center;
 }
+
+/* Page Admin */
+div.containerEditor {
+    display: none;
+}

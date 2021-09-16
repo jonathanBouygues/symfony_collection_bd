@@ -23,8 +23,8 @@
             <tr>
                 <td>{{ app.user.id }}</td>
                 <td>{{ app.user.email }}</td>
-                <td>{{ app.user.firstname }}</td>
-                <td>{{ app.user.lastname}}</td>
+                <td>{{ app.user.firstname | capitalize }}</td>
+                <td>{{ app.user.lastname | upper}}</td>
             </tr>
         </tbody>
     </table>

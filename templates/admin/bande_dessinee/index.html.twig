@@ -1,9 +1,5 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}BandeDessinee index{% endblock %}
-
-{% block body %}
-    <h1>BandeDessinee index</h1>
+<div id="containerAdmin" class="containerBd">
+    <h1>Bande Dessinee</h1>
 
     <table class="table">
         <thead>
@@ -15,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for bande_dessinee in bande_dessinees %}
+            {% for bande_dessinee in bande_dessinees %}
             <tr>
                 <td>{{ bande_dessinee.id }}</td>
                 <td>{{ bande_dessinee.name }}</td>
@@ -25,13 +21,13 @@
                     <a href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 
     <a href="{{ path('bande_dessinee_new') }}">Create new</a>
-{% endblock %}
+</div>

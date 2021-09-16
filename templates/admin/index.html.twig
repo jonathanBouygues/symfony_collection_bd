@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div>
+    <button id="buttonBd" class="buttonAdmin">Bande Dessinée</button>
+    <button id="buttonEditor" class="buttonAdmin">Editor</button>
+    <button id="buttonAuthor" class="buttonAdmin">Author</button>
+</div>
+
+<div>
+    {{ include('admin/editor/index.html.twig') }}
+    {{ include('admin/bande_dessinee/index.html.twig') }}
+    <div id="containerAdmin" class="containerAuthor">
+    </div>
+</div>
+{% endblock %}
