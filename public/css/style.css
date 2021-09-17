@@ -6,6 +6,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    width: 100%;
     margin: 0;
 }
 
@@ -14,21 +15,23 @@ header, footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 10vh;
     color: aliceblue;
 }
-/* 
-footer {
-    position: absolute;
-    bottom: 0;
-} */
+
+header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
 
 main {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    margin-top: 10vh;
     width: 100%;
     min-height: 80vh;
 }
@@ -67,9 +70,9 @@ body span {
 }
 
 main p {
-    background-color: hsl(240, 43%, 50%);
-    color: aliceblue;
-    padding: 30px;
+    color: hsl(240, 43%, 50%);
+    /* color: aliceblue; */
+    /* padding: 30px; */
     border-radius: 10px;
 
 }
@@ -100,7 +103,7 @@ main table.table th, main table.table td  {
 }
 
 /* Page Admin */
-div.containerEditor {display: none;}
+div.containerEditor, div.containerAuthor {display: none;}
 div.containerBd {display: flex;}
 
 div.containerEditor, div.containerBd, div.containerAuthor {

@@ -10,7 +10,7 @@ use App\Entity\Editor;
 use App\Form\EditorType;
 use App\Repository\EditorRepository;
 use App\Entity\Author;
-use App\Form\AuthorEditorType;
+use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,12 +25,13 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="admin")
      */
-    public function index(BandeDessineeRepository $bandeDessineeRepository, EditorRepository $editorRepository): Response
+    public function index(BandeDessineeRepository $bandeDessineeRepository, EditorRepository $editorRepository, AuthorRepository $authorRepository): Response
     {
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'Administration',
             'bande_dessinees' => $bandeDessineeRepository->findAll(),
             'editors' => $editorRepository->findAll(),
+            'authors' => $authorRepository->findAll(),
         ]);
     }
 
@@ -45,11 +46,12 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($bandeDessinee);
-            $entityManager->flush();
+            dump($bandeDessinee);
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($bandeDessinee);
+            // $entityManager->flush();
 
-            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+            // return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/bande_dessinee/new.html.twig', [
@@ -164,6 +166,75 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $editor->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($editor);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    // AUTHOR
+    /**
+     * @Route("/author/new", name="author_new", methods={"GET","POST"})
+     */
+    public function newAuthor(Request $request): Response
+    {
+        $author = new Author();
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($author);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/author/new.html.twig', [
+            'author' => $author,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/author/{id}", name="author_show", methods={"GET"})
+     */
+    public function showAuthor(Author $author): Response
+    {
+        return $this->render('admin/author/show.html.twig', [
+            'author' => $author,
+        ]);
+    }
+
+    /**
+     * @Route("/author/{id}/edit", name="author_edit", methods={"GET","POST"})
+     */
+    public function editAuthor(Request $request, Author $author): Response
+    {
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/author/edit.html.twig', [
+            'author' => $author,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/author/{id}", name="author_delete", methods={"POST"})
+     */
+    public function deleteAuthor(Request $request, Author $author): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $author->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($author);
             $entityManager->flush();
         }
 

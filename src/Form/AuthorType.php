@@ -2,27 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\BandeDessinee;
+use App\Entity\Author;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BandeDessineeType extends AbstractType
+class AuthorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('editor')
-            ->add('authors')
-            ->add('save', SubmitType::class);
+            ->add('firstname')
+            ->add('lastname')
+            ->add('nickname')
+            ->add('created_date');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => BandeDessinee::class,
+            'data_class' => Author::class,
         ]);
     }
 }
