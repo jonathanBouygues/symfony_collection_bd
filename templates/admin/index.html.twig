@@ -1,18 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}{{controller_name}}{% endblock %}
 
 {% block body %}
-<div>
-    <button id="buttonBd" class="buttonAdmin">Bande Dessinée</button>
-    <button id="buttonEditor" class="buttonAdmin">Editeur</button>
-    <button id="buttonAuthor" class="buttonAdmin">Auteur</button>
-</div>
+<div class="container-fluid d-flex justify-content-around align-items-start">
+    <div class="col-1 mt-2 mb-2">
+        <div class="row mb-1">
+            <button id="buttonBd" class="btn btn-primary buttonAdmin">Bande Dessinée</button>
+        </div>
+        <div class="row mt-2 mb-2">
+            <button id="buttonEditor" class="btn btn-primary buttonAdmin">Editeur</button>
+        </div>
+        <div class="row mt-2 mb-2">
+            <button id="buttonAuthor" class="btn btn-primary buttonAdmin">Auteur</button>
+        </div>
+    </div>
 
-<div>
-    {{ include('admin/editor/index.html.twig') }}
-    {{ include('admin/bande_dessinee/index.html.twig') }}
-    <div id="containerAdmin" class="containerAuthor">
+    <div class="col-10 m-3">
+        {{ include('admin/editor/index.html.twig') }}
+        {{ include('admin/bande_dessinee/index.html.twig') }}
+        <div id="containerAdmin" class="containerAuthor">
+        </div>
     </div>
 </div>
 {% endblock %}

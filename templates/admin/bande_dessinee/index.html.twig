@@ -1,5 +1,5 @@
 <div id="containerAdmin" class="containerBd">
-    <h1>Bande Dessinee</h1>
+    <h1 class="m-4">Bande Dessinée</h1>
 
     <table class="table">
         <thead>
@@ -7,7 +7,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Created_date</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,8 +17,8 @@
                 <td>{{ bande_dessinee.name }}</td>
                 <td>{{ bande_dessinee.createdDate ? bande_dessinee.createdDate|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('bande_dessinee_show', {'id': bande_dessinee.id}) }}">show</a>
-                    <a href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">edit</a>
+                    <a class="btn btn-primary text-light" href="{{ path('bande_dessinee_show', {'id': bande_dessinee.id}) }}">Détail</a>
+                    <a class="btn btn-primary text-light" href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% else %}
@@ -29,5 +29,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('bande_dessinee_new') }}">Create new</a>
+    <a href="{{ path('bande_dessinee_new') }}">Créer une nouvelle entrée</a>
 </div>

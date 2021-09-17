@@ -15,7 +15,7 @@
         {% endblock %}
         <link rel="icon" type="image/png" href="{{ asset('./img/logo.jpg') }}" />
     </head>
-    <body class="h-100">
+    <body>
         {{ include('header.html.twig') }}
 
         {% for message in app.flashes('success') %}
@@ -24,7 +24,7 @@
 
         <main>
             {% block body %}
-                <p class"aos-item" data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000">
+                <p class"m-4 aos-item" data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="1000">
                     Bienvenue sur notre application de collection de BDs
                 </p>           
                 <img class"aos-item" data-aos="flip-down" data-aos-delay="1000" data-aos-duration="1000" src="{{ asset('/img/asterix.jpg') }}" alt="asterix"> 

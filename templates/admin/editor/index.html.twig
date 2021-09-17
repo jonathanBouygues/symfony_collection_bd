@@ -1,5 +1,5 @@
 <div id="containerAdmin" class="containerEditor">
-    <h1>Editor</h1>
+    <h1 class="m-4">Editeur</h1>
 
     <table class="table">
         <thead>
@@ -8,19 +8,19 @@
                 <th>Name</th>
                 <th>Adress</th>
                 <th>City</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for editor in editors %}
             <tr>
                 <td>{{ editor.id }}</td>
-                <td>{{ editor.name }}</td>
+                <td>{{ editor.name | capitalize }}</td>
                 <td>{{ editor.adress }}</td>
-                <td>{{ editor.city }}</td>
+                <td>{{ editor.city | upper }}</td>
                 <td>
-                    <a href="{{ path('editor_show', {'id': editor.id}) }}">show</a>
-                    <a href="{{ path('editor_edit', {'id': editor.id}) }}">edit</a>
+                    <a class="btn btn-primary text-light" href="{{ path('editor_show', {'id': editor.id}) }}">Détail</a>
+                    <a class="btn btn-primary text-light" href="{{ path('editor_edit', {'id': editor.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% else %}
@@ -31,6 +31,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('editor_new') }}">Create new</a>
+    <a href="{{ path('editor_new') }}">Créer un nouvel éditeur</a>
 </div>
 

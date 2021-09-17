@@ -1,8 +1,9 @@
 body {
+    position: relative;
     background-color: aliceblue;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     margin: 0;
@@ -13,10 +14,15 @@ header, footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
-    height: 70px;
+    width: 100vw;
+    height: 10vh;
     color: aliceblue;
 }
+/* 
+footer {
+    position: absolute;
+    bottom: 0;
+} */
 
 main {
     display: flex;
@@ -24,6 +30,7 @@ main {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    min-height: 80vh;
 }
 
 header img {
@@ -93,6 +100,10 @@ main table.table th, main table.table td  {
 }
 
 /* Page Admin */
-div.containerEditor {
-    display: none;
+div.containerEditor {display: none;}
+div.containerBd {display: flex;}
+
+div.containerEditor, div.containerBd, div.containerAuthor {
+    flex-direction: column;
+    align-items: center;
 }

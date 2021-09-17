@@ -28,7 +28,7 @@ class AdminController extends AbstractController
     public function index(BandeDessineeRepository $bandeDessineeRepository, EditorRepository $editorRepository): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'controller_name' => 'Administration',
             'bande_dessinees' => $bandeDessineeRepository->findAll(),
             'editors' => $editorRepository->findAll(),
         ]);

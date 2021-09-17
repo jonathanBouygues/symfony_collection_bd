@@ -60,6 +60,7 @@ class UserController extends AbstractController
         $userId = $this->getUser()->getId();
 
         return $this->render('user/copy/index.html.twig', [
+            'controller_name' => 'Ma collection',
             'copies' => $copyRepository->findBy(
                 ['user' => $userId]
             ),
