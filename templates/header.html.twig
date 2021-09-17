@@ -12,16 +12,17 @@
                 <li><a href="/register/">S'enregistrer</a></li>
             {% else %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="/admin/">BD</a></li>
+                    <li><a href="/admin/">Administration</a></li>
                 {% else %} 
                     <li><a href="/user/">Profil</a></li>
                     <li><a href="/user/copy">Ma collection</a></li>
                 {% endif %}
-                <div>
+                <div class="d-flex flex-column justify-content-center align-items-center">
                     <span>Bonjour {{ app.user.firstname | capitalize }}</span>
-                    <li><a href="/logout/">Déconnexion</a></li>
+                    <a class="text-light" href="/logout/">déconnexion</a>
                 </div>
             {% endif %}
         </ul>
     </nav>
+    
 </header>

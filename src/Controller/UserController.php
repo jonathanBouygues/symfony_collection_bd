@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Copy;
 use App\Form\CopyType;
+use App\Form\EditProfilType;
 use App\Repository\CopyRepository;
 
 /**
@@ -25,6 +26,31 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/editProfile", name="edit_profile", methods={"GET","POST"})
+     */
+    public function editProfile(Request $request): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(EditProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->renderForm('user/editProfile.html.twig', [
+            'controllerName' => 'Modification du profil',
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+
+    // COPY
     /**
      * @Route("/copy", name="copy_index", methods={"GET"})
      */
