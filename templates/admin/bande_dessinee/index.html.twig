@@ -16,14 +16,14 @@
                 <td>{{ bande_dessinee.id }}</td>
                 <td>{{ bande_dessinee.name }}</td>
                 <td>{{ bande_dessinee.createdDate ? bande_dessinee.createdDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary text-light" href="{{ path('bande_dessinee_show', {'id': bande_dessinee.id}) }}">Détail</a>
-                    <a class="btn btn-primary text-light" href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">Modifier</a>
+                <td class="container">
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('bande_dessinee_show', {'id': bande_dessinee.id}) }}">Détail</a>
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('bande_dessinee_edit', {'id': bande_dessinee.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouvé</td>
             </tr>
             {% endfor %}
         </tbody>

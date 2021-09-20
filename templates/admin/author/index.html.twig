@@ -1,5 +1,5 @@
 <div id="containerAdmin" class="containerAuthor">
-    <h1>Auteur</h1>
+    <h1 class="m-4">Auteur</h1>
 
     <table class="table">
         <thead>
@@ -20,18 +20,18 @@
                 <td>{{ author.lastname }}</td>
                 <td>{{ author.nickname }}</td>
                 <td>{{ author.createdDate ? author.createdDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a class="btn btn-primary text-light" href="{{ path('author_show', {'id': author.id}) }}">Détail</a>
-                    <a class="btn btn-primary text-light" href="{{ path('author_edit', {'id': author.id}) }}">Modifier</a>
+                <td class="container">
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('author_show', {'id': author.id}) }}">Détail</a>
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('author_edit', {'id': author.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('author_new') }}">Create new</a>
+    <a href="{{ path('author_new') }}">Enregistrer un nouvel auteur</a>
 </div>

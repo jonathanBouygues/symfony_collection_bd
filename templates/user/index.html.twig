@@ -3,26 +3,27 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<h1>Mon profil </h1>
-<div class="container m-5">
-    <div class="row">
-        <span class="col-sm-6">ID</span>
-        <span class="col-sm-6">{{ app.user.id }}</span>
+<main>
+    <h1>Mon profil </h1>
+    <div class="container m-5">
+        <div class="row">
+            <span class="col-sm-6">ID</span>
+            <span class="col-sm-6">{{ app.user.id }}</span>
+        </div>
+        <div class="row">
+            <span class="col-sm-6">Email</span>
+            <span class="col-sm-6">{{ app.user.email }}</span>
+        </div>
+        <div class="row">
+            <span class="col-sm-6">Firstname</span>
+            <span class="col-sm-6">{{ app.user.firstname }}</span>
+        </div>
+        <div class="row">
+            <span class="col-sm-6">Lastname</span>
+            <span class="col-sm-6">{{ app.user.lastname }}</span>
+        </div>
     </div>
-    <div class="row">
-        <span class="col-sm-6">Email</span>
-        <span class="col-sm-6">{{ app.user.email }}</span>
-    </div>
-    <div class="row">
-        <span class="col-sm-6">Firstname</span>
-        <span class="col-sm-6">{{ app.user.firstname }}</span>
-    </div>
-    <div class="row">
-        <span class="col-sm-6">Lastname</span>
-        <span class="col-sm-6">{{ app.user.lastname }}</span>
-    </div>
-</div>
 
-<a class="btn btn-primary text-light" href="{{ path('edit_profile')}}">Modification du profil</a>
-
+    <a class="btn btn-primary text-light" href="{{ path('edit_profile')}}">Modification du profil</a>
+</main> 
 {% endblock %}

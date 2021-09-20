@@ -12,6 +12,7 @@ use App\Repository\EditorRepository;
 use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,6 +36,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/user_all", name="user_all")
+     */
+    public function userAll(UserRepository $userRepository): Response
+    {
+        return $this->render('admin/users/index.html.twig', [
+            'controller_name' => 'Inscrit',
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
     // BANDE DESSINEE
     /**
      * @Route("/bandeDessinee/new", name="bande_dessinee_new", methods={"GET","POST"})
@@ -46,12 +58,11 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($bandeDessinee);
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($bandeDessinee);
-            // $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($bandeDessinee);
+            $entityManager->flush();
 
-            // return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/bande_dessinee/new.html.twig', [

@@ -3,6 +3,7 @@
 {% block title %}Edit Copy{% endblock %}
 
 {% block body %}
+<main>
     <h1>Edit Copy</h1>
 
     {{ include('copy/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +11,5 @@
     <a href="{{ path('copy_index') }}">back to list</a>
 
     {{ include('copy/_delete_form.html.twig') }}
+</main>
 {% endblock %}

@@ -18,14 +18,14 @@
                 <td>{{ editor.name | capitalize }}</td>
                 <td>{{ editor.adress }}</td>
                 <td>{{ editor.city | upper }}</td>
-                <td>
-                    <a class="btn btn-primary text-light" href="{{ path('editor_show', {'id': editor.id}) }}">Détail</a>
-                    <a class="btn btn-primary text-light" href="{{ path('editor_edit', {'id': editor.id}) }}">Modifier</a>
+                <td class="container">
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('editor_show', {'id': editor.id}) }}">Détail</a>
+                    <a class="col-5 btn btn-primary btn-sm text-light" href="{{ path('editor_edit', {'id': editor.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
             {% endfor %}
         </tbody>

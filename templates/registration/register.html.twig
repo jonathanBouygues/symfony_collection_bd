@@ -3,35 +3,38 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-{% for flashError in app.flashes('verify_email_error') %}
-<div class="alert alert-danger" role="alert">{{ flashError }}</div>
-{% endfor %}
+<main>
+
+    {% for flashError in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
 
 
-{{ form_start(registrationForm) }}
-<fieldset class="p-4">
-    <legend class="">Connexion</legend>
+    {{ form_start(registrationForm) }}
+    <fieldset class="p-4">
+        <legend class="">Connexion</legend>
 
-    <div class="mb-3">
-        {{ form_row(registrationForm.email) }}
-    </div>
-    <div>
-        {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
-    </div>
-    <div>
-        {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
-    </div>
-    <div>
-        {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
-        }) }}
-    </div>
-    <div>
-        {{ form_row(registrationForm.agreeTerms) }}
-    </div>
+        <div class="mb-3">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+            }) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
 
-    <button type="submit" class="btn">Register</button>
-</fieldset>
+        <button type="submit" class="btn">Register</button>
+    </fieldset>
 
-{{ form_end(registrationForm) }}
+    {{ form_end(registrationForm) }}
+</main>
 {% endblock %}

@@ -3,9 +3,11 @@
 {% block title %}{{controllerName}}{% endblock %}
 
 {% block body %}
+<main>
     <h1>Créer une nouvelle entrée</h1>
 
     {{ include('user/copy/_form.html.twig') }}
 
     <a href="{{ path('copy_index') }}">back to list</a>
+</main>
 {% endblock %}

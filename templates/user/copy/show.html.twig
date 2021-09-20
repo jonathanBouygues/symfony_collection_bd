@@ -3,6 +3,7 @@
 {% block title %}Copy{% endblock %}
 
 {% block body %}
+<main>
     <h1>Copy</h1>
 
     <table class="table">
@@ -27,4 +28,5 @@
     <a href="{{ path('copy_edit', {'id': copy.id}) }}">edit</a>
 
     {{ include('copy/_delete_form.html.twig') }}
+<main>
 {% endblock %}

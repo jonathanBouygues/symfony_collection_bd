@@ -24,9 +24,7 @@
     <div class="alert alert-success" role="alert">{{ message }}</div>
     {% endfor %}
 
-    <main>
-        {% block body %}{% endblock %}
-    </main>
+    {% block body %}{% endblock %}
 
     {{ include('footer.html.twig') }}
 
