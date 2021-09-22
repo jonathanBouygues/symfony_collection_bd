@@ -98,7 +98,7 @@ class UserController extends AbstractController
      */
     public function show(Copy $copy): Response
     {
-        return $this->render('copy/show.html.twig', [
+        return $this->render('user/copy/show.html.twig', [
             'copy' => $copy,
         ]);
     }

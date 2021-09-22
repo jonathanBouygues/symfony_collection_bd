@@ -36,12 +36,12 @@ main {
     min-height: 80vh;
 }
 
-header img {
-    border-radius: 20px;
+main h1 {
+    margin: 4rem;
 }
 
-header nav {
-    /* width: 25%; */
+header img {
+    border-radius: 20px;
 }
 
 header nav ul {

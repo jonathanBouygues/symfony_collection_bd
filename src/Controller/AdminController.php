@@ -58,6 +58,10 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Manage the uploaded image
+            $bandeDessinee = $this->manageImage($bandeDessinee, $form);
+            // inject un DB
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($bandeDessinee);
             $entityManager->flush();
@@ -90,6 +94,9 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $bandeDessinee = $this->manageImage($bandeDessinee, $form);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
@@ -114,6 +121,34 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    private function manageImage($bandeDessinee, $form)
+    {
+        // DELETE OLD IMAGE
+        if (!is_null($bandeDessinee->getImage())) {
+            // Get data
+            $oldImage = $bandeDessinee->getImage();
+            // Delete in the directory
+            unlink($this->getParameter('image_directory') . '/' . $oldImage);
+        }
+
+        // MANAGE UPLOAD
+        // Get data
+        $image = $form->get('image')->getData();
+        // Generate the uudi
+        $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+        // Copie the file in the directory "uploads"
+        $image->move(
+            $this->getParameter('image_directory'),
+            $fichier
+        );
+        // Modifie l'objet BandeDessinee
+        $bandeDessinee->setImage($fichier);
+
+        return $bandeDessinee;
+    }
+
 
     // EDITOR
     /**

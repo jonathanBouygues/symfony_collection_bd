@@ -6,10 +6,10 @@
 <main>
     <h1>Edit Copy</h1>
 
-    {{ include('copy/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('user/copy/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('copy_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('copy_index') }}">Retour </a>
 
-    {{ include('copy/_delete_form.html.twig') }}
+    {{ include('user/copy/_delete_form.html.twig') }}
 </main>
 {% endblock %}

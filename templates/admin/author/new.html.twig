@@ -3,9 +3,11 @@
 {% block title %}New Author{% endblock %}
 
 {% block body %}
+<main>
     <h1>Create new Author</h1>
 
     {{ include('admin/author/_form.html.twig') }}
 
-    <a href="{{ path('admin') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('admin') }}">Retour </a>
+</main>
 {% endblock %}

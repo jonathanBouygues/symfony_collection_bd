@@ -2,12 +2,14 @@
 
 {% block title %}{{controllerName}}{% endblock %}
 
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
 {% block body %}
 <main>
     <h1>Créer une nouvelle entrée</h1>
 
     {{ include('user/copy/_form.html.twig') }}
 
-    <a href="{{ path('copy_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('copy_index') }}">Retour</a>
 </main>
 {% endblock %}
