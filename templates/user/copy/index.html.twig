@@ -14,6 +14,7 @@
                     <th>Purchase_date</th>
                     <th>Price</th>
                     <th>Actions</th>
+                    <th>Active/Passive</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,11 +26,13 @@
                     <td>
                         <a class="btn btn-primary text-light" href="{{ path('copy_show', {'id': copy.id}) }}">Détail</a>
                         <a class="btn btn-primary text-light" href="{{ path('copy_edit', {'id': copy.id}) }}">Modifier</a>
+                    </td>
+                    <td>
                         <a href="{{ path('copy_archive', {'id': copy.id}) }}" value="{{ csrf_token('archive') }}" class="switchArchive" alt="bd" width="50" height="50">
                             {% if copy.archived == true %}
-                            <img src="{{ asset('/img/switchOn.png') }}" alt="switch"  width="40" height="20">
+                            <img src="{{ asset('/img/switchOff.png') }}" alt="switch"  width="40" height="20">
                             {% else %}
-                             <img src="{{ asset('/img/switchOff.png') }}" alt="switch"  width="40" height="20">
+                             <img src="{{ asset('/img/switchOn.png') }}" alt="switch"  width="40" height="20">
                             {% endif %}
                         </a>
                     </td>
