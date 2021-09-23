@@ -25,6 +25,13 @@
                     <td>
                         <a class="btn btn-primary text-light" href="{{ path('copy_show', {'id': copy.id}) }}">Détail</a>
                         <a class="btn btn-primary text-light" href="{{ path('copy_edit', {'id': copy.id}) }}">Modifier</a>
+                        <form method="post" action="{{ path('copy_archive', {'id': copy.id}) }}">
+                            <input type="hidden" name="token" value="{{ csrf_token('archive') }}"/>
+                            <button class="switchArchive" type="submit"></button>
+                        </form>
+                        <a href="{{ path('copy_archive', {'id': copy.id}) }}" value="{{ csrf_token('archive') }}" class="switchArchive" alt="bd" width="50" height="50">
+                            <img src="{{ asset('/img/switchOn.png') }}" alt="switch"  width="50" height="50">
+                        </a>
                     </td>
                 </tr>
             {% else %}

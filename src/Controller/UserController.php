@@ -11,6 +11,7 @@ use App\Form\CopyType;
 use App\Form\EditProfilType;
 use App\Repository\CopyRepository;
 use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/user")
@@ -136,5 +137,24 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('copy_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    /**
+     * @Route("/archiveCopy/{id}", name="copy_archive", methods={"POST"})
+     */
+    public function archiveCopy(Request $request, Copy $copy)
+    {
+        // Manage json data
+        $data = json_decode($request->getContent(), true);
+        // Check the CsrfToken
+        if ($this->isCsrfTokenValid('archive', $data['token'])) {
+            $copy->setArchived(true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            return new JsonResponse(['success' => 'succès']);
+        } else {
+            return new JsonResponse(['success' => 'erreur']);
+        }
     }
 }

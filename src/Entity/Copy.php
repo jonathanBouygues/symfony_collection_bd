@@ -39,6 +39,11 @@ class Copy
      */
     private $bandeDessinee;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $archived;
+
 
     public function __construct()
     {
@@ -101,5 +106,17 @@ class Copy
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): self
+    {
+        $this->archived = $archived;
+
+        return $this;
     }
 }
