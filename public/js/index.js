@@ -49,10 +49,18 @@ for (let elem of switchArchive) {
                 },
                 body: JSON.stringify({ "token": token })
             }).then(
+                // Get the JSON response
                 response => response.json()
             ).then(data => {
-                if (data.success) {
-                    alert(data.success);
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Change the button by archived data
+                    if (data.success == true) {
+                        this.firstElementChild.attributes.src.nodeValue = "/img/switchOn.png";
+                    } else {
+                        this.firstElementChild.attributes.src.nodeValue = "/img/switchOff.png";
+                    }
                 }
             }).catch(e => alert('ereur' + e));
         };

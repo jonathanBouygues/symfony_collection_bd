@@ -149,12 +149,17 @@ class UserController extends AbstractController
         $data = json_decode($request->getContent(), true);
         // Check the CsrfToken
         if ($this->isCsrfTokenValid('archive', $data['token'])) {
-            $copy->setArchived(true);
+            // Ternaire
+            $newData = $copy->getArchived() ? false : true;
+            // Modify the boolean
+            $copy->setArchived($newData);
             $entityManager = $this->getDoctrine()->getManager();
+            // Send the request
             $entityManager->flush();
-            return new JsonResponse(['success' => 'succès']);
+
+            return new JsonResponse(['success' => $newData]);
         } else {
-            return new JsonResponse(['success' => 'erreur']);
+            return new JsonResponse(['error' => 'Il y a eu une erreur sur l\'archivage']);
         }
     }
 }
