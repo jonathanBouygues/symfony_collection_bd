@@ -9,8 +9,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ copy.id }}</td>
+                <th></th>
+                <td><img src="{{ asset('/uploads/'~copy.bandeDessinee.image)}}" alt="{{ copy.bandeDessinee }}" width="50" height="100"></td></td>
             </tr>
             <tr>
                 <th>Purchase_date</th>
@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ copy.price }}</td>
+                <td>{{ copy.price | format_currency('EUR', locale='fr') }}</td>
             </tr>
         </tbody>
     </table>
