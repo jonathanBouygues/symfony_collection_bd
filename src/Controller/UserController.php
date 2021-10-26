@@ -141,25 +141,59 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/archiveCopy/{id}", name="copy_archive", methods={"POST"})
+     * @Route("/archiveCopy/{id}", name="copy_archive", methods={"PUT","POST"})
      */
-    public function archiveCopy(Request $request, Copy $copy)
+    public function archiveCopy(Request $request, Copy $copy): Response
     {
+        // Manage csrf token in headers
+        $tokenSend = $request->headers->get('token');
         // Manage json data
-        $data = json_decode($request->getContent(), true);
         // Check the CsrfToken
-        if ($this->isCsrfTokenValid('archive', $data['token'])) {
+        if ($this->isCsrfTokenValid('archive', $tokenSend)) {
             // Ternaire
             $newData = $copy->getArchived() ? false : true;
+
             // Modify the boolean
             $copy->setArchived($newData);
             $entityManager = $this->getDoctrine()->getManager();
             // Send the request
             $entityManager->flush();
 
-            return new JsonResponse(['success' => $newData]);
+            $text = $newData ? '<img id="testTest_' . $copy->getId() . '" src="/img/switchOff.png" alt="switch"  width="40" height="20">' : '<img id="testTest_' . $copy->getId() . '" src="/img/switchOn.png" alt="switch" width="40" height="20">';
+
+            return new Response($text);
         } else {
-            return new JsonResponse(['error' => 'Il y a eu une erreur sur l\'archivage']);
+            return new Response('L\'archivage ne s\'est pas effectué correctement');
+        }
+    }
+
+    /**
+     * @Route("/favoriteCopy/{id}", name="copy_favorite", methods={"PUT","POST"})
+     */
+    public function favoriteCopy(Request $request, Copy $copy): Response
+    {
+        // Manage csrf token in headers
+        $tokenSend = $request->headers->get('token');
+
+        // Manage json data
+        // Check the CsrfToken
+        if ($this->isCsrfTokenValid('favorite', $tokenSend)) {
+            // Ternaire
+            $newData = $copy->getFavorite() ? false : true;
+            dump($newData);
+            // Modify the boolean
+            $copy->setFavorite($newData);
+            $entityManager = $this->getDoctrine()->getManager();
+            // Send the request
+            $entityManager->flush();
+
+            $text = $newData ? '<img id="favoriteCopy_' . $copy->getId() . '" src="/img/heart_full.png" alt="heart full" width="20" height="20">' : '<img id="favoriteCopy_' . $copy->getId() . '" src="/img/heart_empty.png" alt="heart empty" width="20" height="20">';
+
+            dump($text);
+
+            return new Response($text);
+        } else {
+            return new Response('La mise en favori n\'a pas fonctionnée');
         }
     }
 }

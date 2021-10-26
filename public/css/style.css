@@ -110,3 +110,7 @@ div.containerEditor, div.containerBd, div.containerAuthor {
     flex-direction: column;
     align-items: center;
 }
+
+img {
+    cursor: pointer;
+}

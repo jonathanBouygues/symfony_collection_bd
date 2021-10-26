@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CopyRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CopyRepository::class)
@@ -25,6 +26,7 @@ class Copy
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank
      */
     private $price;
 
@@ -42,7 +44,12 @@ class Copy
     /**
      * @ORM\Column(type="boolean")
      */
-    private $archived;
+    private $archived = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $favorite = false;
 
 
     public function __construct()
@@ -103,11 +110,6 @@ class Copy
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
     public function getArchived(): ?bool
     {
         return $this->archived;
@@ -116,6 +118,18 @@ class Copy
     public function setArchived(bool $archived): self
     {
         $this->archived = $archived;
+
+        return $this;
+    }
+
+    public function getFavorite(): ?bool
+    {
+        return $this->favorite;
+    }
+
+    public function setFavorite(?bool $favorite): self
+    {
+        $this->favorite = $favorite;
 
         return $this;
     }

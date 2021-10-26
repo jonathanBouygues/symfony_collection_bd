@@ -43,7 +43,9 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/users/index.html.twig', [
             'controller_name' => 'Inscrit',
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findAll(
+                ['name' => 'ASC']
+            ),
         ]);
     }
 

@@ -25,44 +25,18 @@ for (let elem of buttonAdmin) {
     });
 };
 
-
-
 // ╚╚╚╚╚╚╚╚╚╚ PAGE COPY
 
-// ╚╚ Manage the copy archived by AJAX
+// ╚╚ Manage the favorite copy
 // Selector
-const switchArchive = document.querySelectorAll(".switchArchive");
-// Archive the copy if click on the button
-for (let elem of switchArchive) {
-    elem.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (confirm("Etes-vous sûr d'archiver cette bd ?")) {
-            // Initialize datas
-            token = this.attributes.value.value;
-            url = this.href;
-            // AJAX method fetch
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ "token": token })
-            }).then(
-                // Get the JSON response
-                response => response.json()
-            ).then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    // Change the button by archived data
-                    if (data.success == true) {
-                        this.firstElementChild.attributes.src.nodeValue = "/img/switchOn.png";
-                    } else {
-                        this.firstElementChild.attributes.src.nodeValue = "/img/switchOff.png";
-                    }
-                }
-            }).catch(e => alert('ereur' + e));
-        };
-    });
-};
+const butFavorite = document.getElementById('actionFavorite');
+const trCopyFavorite = document.querySelectorAll('.copyFavorite');
+const trCopyNoFavorite = document.querySelectorAll('.copyNoFavorite');
+
+
+butFavorite.addEventListener('click', function () {
+    for (let copy of trCopyNoFavorite) {
+        copy.style.display == "none" ? copy.style.display = "" : copy.style.display = "none";
+
+    };
+});

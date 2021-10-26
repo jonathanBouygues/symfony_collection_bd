@@ -7,6 +7,8 @@
     <div class="container-fluid d-flex flex-column align-items-center m-3">
         <h1 class="m-3">Ma collection</h1>
 
+        <button class="btn btn-primary text-light" id="actionFavorite">Afficher les bd favorites</button>
+
         <table class="table">
             <thead>
                 <tr>
@@ -20,7 +22,7 @@
             </thead>
             <tbody>
             {% for copy in copies %}
-                <tr>
+                {{ copy.favorite == true ? '<tr class="copyFavorite">': '<tr class="copyNoFavorite">' }}
                     <td><img src="{{ asset('/uploads/'~copy.bandeDessinee.image)}}" alt="{{ copy.bandeDessinee }}" width="50" height="100"></td>
                     <td>{{ copy.bandeDessinee }}</td>
                     <td>{{ copy.purchaseDate ? copy.purchaseDate|date('d-m-Y') : '' }}</td>
@@ -30,11 +32,18 @@
                         <a class="btn btn-primary text-light" href="{{ path('copy_edit', {'id': copy.id}) }}">Modifier</a>
                     </td>
                     <td>
-                        <a href="{{ path('copy_archive', {'id': copy.id}) }}" value="{{ csrf_token('archive') }}" class="switchArchive" alt="bd" width="50" height="50">
-                            {% if copy.archived == true %}
-                            <img src="{{ asset('/img/switchOff.png') }}" alt="switch"  width="40" height="20">
+                        <a hx-put="{{ path('copy_archive', {'id': copy.id}) }}" hx-headers='{"token":"{{ csrf_token('archive')}}"}' hx-target="#testTest_{{copy.id}}" hx-swap="outerHTML">
+                        {% if copy.archived == true %}
+                            <img id="testTest_{{copy.id}}" src="{{ asset('/img/switchOff.png') }}" alt="switch"  width="40" height="20">
+                        {% else %}
+                             <img id="testTest_{{copy.id}}" src="{{ asset('/img/switchOn.png') }}" alt="switch"  width="40" height="20">
+                        {% endif %}
+                        </a>
+                        <a hx-put="{{ path('copy_favorite', {'id': copy.id})}}" hx-headers='{"token":"{{ csrf_token('favorite')}}"}' hx-target="#favoriteCopy_{{copy.id}}" hx-swap="outerHTML">
+                            {% if copy.favorite != true %}
+                                <img id="favoriteCopy_{{copy.id}}" src="{{ asset('/img/heart_empty.png') }}" alt="heart empty" width="20" height="20">
                             {% else %}
-                             <img src="{{ asset('/img/switchOn.png') }}" alt="switch"  width="40" height="20">
+                                <img id="favoriteCopy_{{copy.id}}" src="{{ asset('/img/heart_full.png') }}" alt="heart full"  width="20" height="20">
                             {% endif %}
                         </a>
                     </td>
