@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{controller_name}}{% endblock %}
+
+{% block body %}
+<main>
+    <div>
+        {{ form_start(contactForm) }}
+        <fieldset class="p-4">
+            <legend class="text-center">Contact</legend>
+
+            <div class="mb-3">
+                {{ form_row(contactForm.subject, { 'label': 'Sujet' }) }}
+            </div>
+            <div>
+                {{ form_row(contactForm.email) }}
+            </div>
+            <div>
+                {{ form_row(contactForm.message) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </fieldset>
+
+        {{ form_end(contactForm) }}
+   </div> 
+</main>
+{% endblock %}

@@ -180,7 +180,6 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('favorite', $tokenSend)) {
             // Ternaire
             $newData = $copy->getFavorite() ? false : true;
-            dump($newData);
             // Modify the boolean
             $copy->setFavorite($newData);
             $entityManager = $this->getDoctrine()->getManager();
@@ -188,8 +187,6 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             $text = $newData ? '<img id="favoriteCopy_' . $copy->getId() . '" src="/img/heart_full.png" alt="heart full" width="20" height="20">' : '<img id="favoriteCopy_' . $copy->getId() . '" src="/img/heart_empty.png" alt="heart empty" width="20" height="20">';
-
-            dump($text);
 
             return new Response($text);
         } else {
